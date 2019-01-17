@@ -1,0 +1,25 @@
+[req] 
+distinguished_name = req_distinguished_name
+prompt = yes
+
+[ req_distinguished_name ]
+countryName                     = Country Name (2 letter code)
+countryName_value               = CN
+
+stateOrProvinceName             = State or Province Name (full name)
+stateOrProvinceName_value       = Beijing
+
+localityName                    = Locality Name (eg, city)
+localityName_value              = Haidian
+
+organizationName                = Organization Name (eg, company)
+organizationName_value          = Channelsoft
+
+organizationalUnitName          = Organizational Unit Name (eg, section)
+organizationalUnitName_value    = R & D Department
+
+commonName                      = Common Name (eg, your name or your server\'s hostname)
+commonName_value                = ai_center
+
+emailAddress                    = Email Address
+emailAddress_value              = admin@askkeep.com
