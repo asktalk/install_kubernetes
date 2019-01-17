@@ -1,4 +1,4 @@
-# install kubernetes v1.13.2
+# Install kubernetes v1.13.2
 
 
 ## Reset kubernetes
