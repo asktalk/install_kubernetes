@@ -1,7 +1,7 @@
-# install_kubernetes
+# install kubernetes v1.13.2
 
 
-## reset kubernetes
+## Reset kubernetes
 ```
 kubeadm reset -f
 ```
@@ -13,7 +13,7 @@ kubeadm init  --pod-network-cidr=192.168.0.0/16 --kubernetes-version v1.13.2  --
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
 
-### config kubectl env
+### Config kubectl env
 ```
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /etc/profile
 source /etc/profile
@@ -25,14 +25,14 @@ echo $KUBECONFIG
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 
-## install calico network
+## Install calico network
 ```
 kubectl apply -f https://docs.projectcalico.org/v3.4/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 
 kubectl get pods --all-namespaces
 ```
 
-## install dashboard
+## Install dashboard
 ```
 openssl req -newkey rsa:4096 -nodes -config ./certs/dashboard-openssl.cnf -days 365 -x509 -out ./certs/dashboard.crt -keyout ./certs/dashboard.key
 # kubectl delete secrets kubernetes-dashboard-certs -n=kube-system
