@@ -6,20 +6,21 @@
 kubeadm reset -f
 ```
 
-## install k8s master
+## Initializing your master
 ```
 kubeadm init  --pod-network-cidr=192.168.0.0/16 --kubernetes-version v1.13.2  --ignore-preflight-errors=NumCPU
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
 
-config kubectl env
+### config kubectl env
 ```
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /etc/profile
 source /etc/profile
 echo $KUBECONFIG
 ```
 
+### Control plane node isolation
 ```
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
@@ -42,7 +43,7 @@ kubectl apply -f https://raw.githubusercontent.com/asktalk/install_kubernetes/ma
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
-### 访问dashboard
+### Accessing dashboard
 ```
 # https://xxx.xxx.xxx.xxx:32000
 echo ">>>>>>>>>>>>>>>> kubernetes dashboard install finished. pls visit https://xxx.xxx.xxx.xxx:32000"
@@ -50,7 +51,7 @@ echo "kubernetes dashboard install finished. pwd is: "
 kubectl describe secret/$(kubectl get secret -n=kube-system |grep admin |awk '{print $1}') -nkube-system
 ```
 
-## view k8s pods
+## Check out installation Success for kubernetes
 ```
 kubectl get service --namespace=kube-system
 kubectl get cs
