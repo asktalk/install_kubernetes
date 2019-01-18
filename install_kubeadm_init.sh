@@ -26,10 +26,11 @@ kubectl create secret generic kubernetes-dashboard-certs --from-file="./certs/da
 kubectl describe secret/$(kubectl get secret -nkube-system |grep admin |awk '{print $1}') -nkube-system
 
 kubectl apply -f https://raw.githubusercontent.com/asktalk/install_kubernetes/master/plugins/dashboard/dashboard-user-role.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+curl -fsSL https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml | sed "/targetPort: 8443/a\      nodePort: 32000" | sed "$ a\  type: NodePort" | kubectl apply -f -
 
 # 访问dashboard
-# https://192.168.200.150:32000
+# https://xxx.xxx.xxx.xxx:32000
 echo ">>>>>>>>>>>>>>>> kubernetes dashboard install finished. pls visit https://xxx.xxx.xxx.xxx:32000"
 echo "kubernetes dashboard install finished. pwd is: "
 kubectl describe secret/$(kubectl get secret -n=kube-system |grep admin |awk '{print $1}') -nkube-system
